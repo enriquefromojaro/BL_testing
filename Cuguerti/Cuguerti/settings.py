@@ -80,27 +80,23 @@ WSGI_APPLICATION = 'Cuguerti.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cuguerti',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
-# Travis support
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisci',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
-    }
+# # Travis support
+# if 'TRAVIS' in os.environ:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE':   'django.db.backends.postgresql_psycopg2',
+#             'NAME':     'travisci',
+#             'USER':     'postgres',
+#             'PASSWORD': '',
+#             'HOST':     'localhost',
+#             'PORT':     '',
+#         }
+#     }
 
 
 

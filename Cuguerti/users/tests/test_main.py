@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.test import TestCase
 
 
-class TryTestsTestCase(TestCase):
+class TryTestsTest(TestCase):
 
     def test_it_works(self):
         self.fail('Patata')
