@@ -19,7 +19,7 @@ env:
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=Cuguerti.settings
-  - export PYTHONPATH=$HOME/builds/your_github_username/your_repo
+  - export PYTHONPATH=$HOME/builds/enriquefromojaro/BL_testing
   - export PIP_USE_MIRRORS=true
 
 install:
@@ -30,4 +30,4 @@ before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
 
 script:
-- python manage.py test
+  - python manage.py test
