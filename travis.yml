@@ -18,7 +18,7 @@ services: postgresql
 env:
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=your_project.settings
+  - export DJANGO_SETTINGS_MODULE=Cuguerti.settings
   - export PYTHONPATH=$HOME/builds/your_github_username/your_repo
   - export PIP_USE_MIRRORS=true
 
