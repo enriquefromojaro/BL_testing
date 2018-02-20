@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'Cuguerti.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cugerti',
+        'NAME': 'cuguerti',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',

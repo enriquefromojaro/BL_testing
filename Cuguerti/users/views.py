@@ -3,4 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+from rest_framework.viewsets import ModelViewSet
+from django.contrib.auth.models import User
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+
