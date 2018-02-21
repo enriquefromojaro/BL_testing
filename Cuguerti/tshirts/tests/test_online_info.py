@@ -1,4 +1,3 @@
-from copy import copy
 from unittest import TestCase
 from requests import Response as RequestResponse
 import requests
@@ -31,8 +30,8 @@ class OnlineInfoTestCase(TestCase):
         # Asserting information is the asked
         self.assertEquals(info, 'fakey_shirt')
 
-    @mock.patch('requests.get', return_value=MockedResponse(200, copy(LONG_STR_TEST)))
-    def test_static_get_online_info_substring(self, LONG_STR_TEST):
+    @mock.patch('requests.get', return_value=MockedResponse(200, LONG_STR_TEST))
+    def test_static_get_online_info_substring(self, shirt_mock):
         # Asking for information
         info = OnlineInformation.get_online_info('fake-site/fakey_shirt')
 
