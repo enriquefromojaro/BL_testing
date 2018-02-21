@@ -15,8 +15,8 @@ class MockedResponse(RequestResponse):
         self._content = text
 
 
-# str 56 chars long
-LONG_STR_TEST = 'qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM'
+# str 54 chars long
+LONG_STR_TEST = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
 
 
 class OnlineInfoTestCase(TestCase):
