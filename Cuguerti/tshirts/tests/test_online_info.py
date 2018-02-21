@@ -125,3 +125,20 @@ class OnlineInfoTestCase(TestCase):
         info = info_obj.get_info()
 
         self.assertEquals(info, 'fake-shirt')
+
+
+    @mock.patch.multiple(
+        OnlineInformation,
+        get_online_info=mock.MagicMock(return_value='fake-shirt'),
+        url=mock.PropertyMock(return_value='http://fake-host/fake-shirt')
+    )
+    def test_method_get_info_mocked_property_multiple(self):
+
+        info_obj = OnlineInformation('fake-shirt')
+        info = info_obj.get_info()
+
+        self.assertEquals(info, 'fake-shirt')
+
+
+class OnlineInfoIntegrationTestCase(TestCase):
+    pass
