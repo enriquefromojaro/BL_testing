@@ -126,7 +126,6 @@ class OnlineInfoTestCase(TestCase):
 
         self.assertEquals(info, 'fake-shirt')
 
-
     @mock.patch.multiple(
         OnlineInformation,
         get_online_info=mock.MagicMock(return_value='fake-shirt'),
