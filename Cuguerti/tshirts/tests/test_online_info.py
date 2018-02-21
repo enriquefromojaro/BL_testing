@@ -114,3 +114,14 @@ class OnlineInfoTestCase(TestCase):
             self.assertDictEqual(static_mock.call_args[1], {})
 
         self.assertEquals(info, 'fake-shirt')
+
+    @mock.patch.object(OnlineInformation, 'get_online_info', return_value='fake-shirt')
+    @mock.patch.object(OnlineInformation, 'url', new_callable=mock.PropertyMock())
+    def test_method_get_info_mocked_property(self, url_mock, static_mock):
+
+        url_mock.return_value = 'http://fake-host/fake-shirt'
+
+        info_obj = OnlineInformation('fake-shirt')
+        info = info_obj.get_info()
+
+        self.assertEquals(info, 'fake-shirt')
