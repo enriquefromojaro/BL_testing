@@ -15,6 +15,10 @@ class MockedResponse(RequestResponse):
         self._content = text
 
 
+# str 56 chars long
+LONG_STR_TEST = 'qwertyuiopasdfghjklñzxcvbnmQWERTYUIOPASDFGHJKLÑZXCVBNM'
+
+
 class OnlineInfoTestCase(TestCase):
 
     @mock.patch('requests.get', return_value=MockedResponse(200, 'fakey_shirt'))
@@ -26,6 +30,17 @@ class OnlineInfoTestCase(TestCase):
         # Asserting information is the asked
         self.assertEquals(info, 'fakey_shirt')
 
+    @mock.patch('requests.get', return_value=MockedResponse(200, LONG_STR_TEST))
+    def test_static_get_online_info_substring(self, LONG_STR_TEST):
+        # Asking for information
+        info = OnlineInformation.get_online_info('fake-site/fakey_shirt')
+
+        # we expect the 50 first chars
+        expected = LONG_STR_TEST[:50]
+
+        # Asserting information is the asked
+        self.assertEquals(info, expected)
+
     @mock.patch.object(requests, 'get', return_value=MockedResponse(200, 'fakey_shirt'))
     def test_static_get_online_info_ok_obj_patch(self, shirt_mock):
         # Asking for information
@@ -34,7 +49,7 @@ class OnlineInfoTestCase(TestCase):
         # Asserting information is the asked
         self.assertEquals(info, 'fakey_shirt')
 
-    @mock.patch('requests.get', return_value=MockedResponse(400, 'the_shirt_is_a_lie'))
+    @mock.patch('requests.get', return_value=MockedResponse(404, 'the_shirt_is_a_lie'))
     def test_static_get_online_info_bad_response_ko(self, shirt_mock):
 
         msg_regexp = r'^Invalid response\. Status: [1-5]\d{2}$'
