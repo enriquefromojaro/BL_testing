@@ -4,7 +4,6 @@ from rest_framework.serializers import ModelSerializer
 
 
 class UserSerializer(ModelSerializer):
-    avatar = serializers.ImageField(source='musician.avatar')
 
     class Meta:
         model = User
