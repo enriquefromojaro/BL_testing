@@ -139,3 +139,14 @@ class MocksTestCase (TestCase):
                 instance.return_val(),
                 (instance, 'Mocked: random_val')
             )
+    def test_mock_with_assertions(self):
+
+        def mock_side_effect(*args, **kwargs):
+            assert kwargs == {}, 'There must be no kwarg'
+            assert len(args) >= 3, 'There must be al least 3 args'
+
+            return 'All right'
+
+        mock_obj = mock.MagicMock( side_effect=mock_side_effect)
+
+        mock_obj(1, 2, 3)
