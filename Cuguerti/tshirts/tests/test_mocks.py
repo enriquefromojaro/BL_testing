@@ -8,6 +8,7 @@ class MocksTestCase (TestCase):
     def test_method(self):
 
         class TestClass:
+
              def method(self, *args):
                  pass
 
@@ -28,6 +29,8 @@ class MocksTestCase (TestCase):
 
     def test_side_effect_basic(self):
 
+        # use of side_effect with functions (most common use)
+
         mock_obj = mock.MagicMock()
 
         mock_obj.side_effect = lambda *args: args
@@ -45,5 +48,18 @@ class MocksTestCase (TestCase):
 
         self.assertEquals(val, mock_obj.glados())
 
-    def test_non_callable_mock(self):
-        mock_obj = mock.NonCallableMock()
+    def test_mock_constructor(self):
+
+        # Set all prev stuff in the constructor
+
+        mock_obj = mock.MagicMock(
+            side_effect=lambda *args: args,
+            attr='attr_value',
+            **{'re_val.return_value': 'This must return this value'}
+        )
+
+        self.assertEquals(mock_obj(1, 2, 3), (1, 2, 3))
+
+        self.assertIsInstance(mock_obj.re_val, mock.Mock)
+        self.assertEquals(mock_obj.re_val(), 'This must return this value')
+        self.assertEquals(mock_obj.attr, 'attr_value')
