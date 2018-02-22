@@ -63,3 +63,61 @@ class MocksTestCase (TestCase):
         self.assertIsInstance(mock_obj.re_val, mock.Mock)
         self.assertEquals(mock_obj.re_val(), 'This must return this value')
         self.assertEquals(mock_obj.attr, 'attr_value')
+
+    def test_mock_call_count(self):
+
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj()
+        mock_obj()
+
+        self.assertEquals(2, mock_obj.call_count)
+
+    def test_mock_called(self):
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj()
+
+        self.assertEquals(True, mock_obj.called)
+
+    def test_mock_call_args(self):
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj(1, 2, 3, kwarg='kwarg_value')
+
+        self.assertTupleEqual(
+            mock_obj.call_args,
+            (
+                (1, 2, 3),  # Args
+                {'kwarg': 'kwarg_value'}  # kwargs
+            )
+        )
+
+    def test_assert_mock_called(self):
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj(1, 2, 3, kwarg='kwarg_value')
+
+        mock_obj.assert_called()
+
+    def test_assert_mock_called_once(self):
+        """
+        Asserts the mock has been called exactly 1 time
+        :return:
+        """
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj(1, 2, 3, kwarg='kwarg_value')
+
+        mock_obj.assert_called_once()
+
+    def test_assert_mock_called_once_with(self):
+        """
+        Asserts the mock has been called exactly 1 time AND with the expected
+        params
+        """
+        mock_obj = mock.MagicMock(return_value='Pos vale')
+
+        mock_obj(1, 2, 3, kwarg='kwarg_value')
+
+        mock_obj.assert_called_once_with(1, 2, 3, kwarg='kwarg_value')
