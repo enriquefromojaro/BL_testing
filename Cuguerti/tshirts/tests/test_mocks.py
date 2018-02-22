@@ -121,3 +121,21 @@ class MocksTestCase (TestCase):
         mock_obj(1, 2, 3, kwarg='kwarg_value')
 
         mock_obj.assert_called_once_with(1, 2, 3, kwarg='kwarg_value')
+
+    def test_mock_autospec(self):
+
+        class TestClass:
+
+            def __init__(self, val):
+                self.val = val
+
+            def return_val(self):
+                return self.val
+
+        with mock.patch.object(TestClass, 'return_val', autospec=True,
+                               side_effect=lambda self: (self, 'Mocked: %s' % self.val)):
+            instance = TestClass('random_val')
+            self.assertTupleEqual(
+                instance.return_val(),
+                (instance, 'Mocked: random_val')
+            )
