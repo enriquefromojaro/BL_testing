@@ -37,6 +37,33 @@ class MocksTestCase (TestCase):
 
         self.assertEquals(mock_obj(1, 2, 3), (1, 2, 3))
 
+    def test_side_effect_iterable(self):
+
+        # use of side_effect with functions (most common use)
+
+        mock_obj = mock.MagicMock()
+
+        mock_obj.side_effect = ('result_1', 'result_2', 'result_3')
+
+        # first call will return 'result_1'
+
+        self.assertEquals(mock_obj(), 'result_1')
+        self.assertEquals(mock_obj(), 'result_2')
+        self.assertEquals(mock_obj(), 'result_3')
+
+
+    def test_side_effect_exception(self):
+
+        # use of side_effect with functions (most common use)
+
+        mock_obj = mock.MagicMock()
+
+        mock_obj.side_effect = ValueError
+
+        # first call will return 'result_1'
+
+        self.assertRaises(ValueError, mock_obj)
+
     def test_mock_attr(self):
         mock_obj = mock.MagicMock()
 
@@ -139,6 +166,7 @@ class MocksTestCase (TestCase):
                 instance.return_val(),
                 (instance, 'Mocked: random_val')
             )
+
     def test_mock_with_assertions(self):
 
         def mock_side_effect(*args, **kwargs):
