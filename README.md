@@ -1,5 +1,5 @@
 # BL_testing
-[![Build Status](https://travis-ci.org/enriquefromojaro/BL_testing.svg?branch=master)](https://travis-ci.org/enriquefromojaro/BL_testing)
+Master:  [![Build Status](https://travis-ci.org/enriquefromojaro/BL_testing.svg?branch=master)](https://travis-ci.org/enriquefromojaro/BL_testing) Develop: [![Build Status](https://travis-ci.org/enriquefromojaro/BL_testing.svg?branch=master)](https://travis-ci.org/enriquefromojaro/BL_testing)
 
 Proyecto para intorducir el testing en backend en un Breakfast and learn
 La idea original era hacer un proyecto Django testeado para que sirviese de ejemplo tanto de mocks como de buenas prácticas de testing.
@@ -18,9 +18,3 @@ El fichero test_further_features.py sirve para introducir cómo se pueden aplica
 
 Para más información sogre ellos, recomiendo la propia documentación de python, ya que es muy completa: 
 [documentación] (https://docs.python.org/3/library/unittest.mock.html)
-
-Tests en master: 
-https://travis-ci.org/enriquefromojaro/BL_testing.svg?branch=master
-
-Tests en develop: 
-https://travis-ci.org/enriquefromojaro/BL_testing.svg?branch=develop
